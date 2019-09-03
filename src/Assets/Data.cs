@@ -8,7 +8,6 @@ public class Data : MonoBehaviour
 {
     const string PREFAB_PATH = "Data";    
     static Data mInstance = null;
-    public Settings settings;
     public Animator fade;
     public string levelName;
     public KinectManager kinect;
@@ -46,7 +45,6 @@ public class Data : MonoBehaviour
             return;
         }       
         DontDestroyOnLoad(this.gameObject);
-        settings = GetComponent<Settings>();
         pool = GetComponent<PoolItems>();
        // Events.UseKinect += UseKinect;
        //  UseKinect(false);
@@ -74,11 +72,11 @@ public class Data : MonoBehaviour
         fade.gameObject.SetActive(false);
         loading = false;
     }
-    //void UseKinect(bool isOn)
-    //{
-    //    print(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + " ison: " + isOn);
-    //    kinect.gameObject.SetActive(isOn);
-    //    //kinect.SetState(isOn);
-    //    cursorHand.enabled = isOn;
-    //}
+    void UseKinect(bool isOn)
+    {
+        print(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + " ison: " + isOn);
+        kinect.gameObject.SetActive(isOn);
+       // kinect.SetState(isOn);
+        cursorHand.enabled = isOn;
+    }
 }

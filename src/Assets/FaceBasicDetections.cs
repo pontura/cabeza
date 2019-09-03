@@ -22,25 +22,50 @@ public class FaceBasicDetections : MonoBehaviour
         CLOSE,
         OPEN
     }
+    public Vector3 offsetMomuth;
     public GameObject faceInteractions;
     public Vector3 headRotation;
+    public Vector3 mouthPosition;
 
     bool ready;
+    bool isOn;
+    public void Init()
+    {
+        isOn = true;
+    }
+    public void Reset()
+    {
+        isOn = false;
+    }
     void Update()
     {
+        if (!isOn)
+            return;
+
         headRotation = faceTrackingManager.GetHeadRotation(true).eulerAngles;
+        //invierte:
+        headRotation.x = headRotation.x * -2;
+        headRotation.z = headRotation.z * -1;
+        headRotation.y = headRotation.y * 2;
+
         faceInteractions.transform.localEulerAngles = headRotation;
         //el 22 es la punta de arriba de la boca:
         Vector3 vert_pos_mouth_1 = faceTrackingManager.GetFaceModelVertex(22);
         //el 10 es la punta de abajo de la boca:
         Vector3 vert_pos_mouth_2 = faceTrackingManager.GetFaceModelVertex(10);
 
+        
+
+        mouthPosition = vert_pos_mouth_1;//Vector3.Lerp(vert_pos_mouth_1, vert_pos_mouth_2, 0.5f);
+
         float mouthValue = Vector3.Distance(vert_pos_mouth_1, vert_pos_mouth_2);
         smoothMouthValue = Mathf.Lerp(mouthValue, smoothMouthValue, mouthSmoothFilter);
 
         SetMouthState();
 
-       // DrawPoints();
+        faceInteractions.transform.position = Vector3.Lerp(vert_pos_mouth_1 + offsetMomuth, faceInteractions.transform.position, 0.1f);
+
+        // DrawPoints();
 
     }
     void SetMouthState()
@@ -49,7 +74,7 @@ public class FaceBasicDetections : MonoBehaviour
         {
             mouthState = mouthStates.CLOSE;
             Events.OnMouthOpen(mouthState);
-        } else if (smoothMouthValue > 0.03f && mouthState != mouthStates.OPEN)
+        } else if (smoothMouthValue > 0.018f && mouthState != mouthStates.OPEN)
         {
             mouthState = mouthStates.OPEN;
             Events.OnMouthOpen(mouthState);
@@ -89,6 +114,13 @@ public class FaceBasicDetections : MonoBehaviour
         }
         if (all.Count > 10)
             ready = true;
+    }
+    public float GetZRotation()
+    {
+        float rotationZ = headRotation.z * -1;
+        if (rotationZ > 180)
+            rotationZ -= 360;
+        return rotationZ;
     }
 
 }

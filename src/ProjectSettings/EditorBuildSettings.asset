@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/K2Examples/KinectDemos/AvatarsDemo/KinectAvatarsDemo1.unity
-    guid: 4d589fa57be210d48ad7046a1af0d672
+    path: Assets/Scenes/Game.unity
+    guid: 6f0f18d4877031d46948011ccb76c85e
   m_configObjects: {}

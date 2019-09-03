@@ -31,20 +31,23 @@ public class PoolItems : MonoBehaviour
             {
                 InteractiveItem newItem = Instantiate(d.interactiveItem);                
                 Pool(newItem);
+                newItem.name = d.interactiveItem.name;
             }
         }
     }
     public InteractiveItem GetItem(string name)
-    {
-        if (pooled.Count > 0)
+    {        
+        foreach (InteractiveItem item in pooled)
         {
-            InteractiveItem i = pooled[0];
-            pooled.Remove(i);
-            i.gameObject.SetActive(true);
-            return i;
+            if (item.name == name)
+            { 
+                pooled.Remove(item);
+                item.gameObject.SetActive(true);
+                return item;
+            }
         }
-        else
-            return null;
+        print("<POOL> no existe : " + name);
+        return null;
     }
     void Pool(InteractiveItem item)
     {

@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8813759385689046072}
   - component: {fileID: 8813759385689046023}
-  - component: {fileID: 8813759385689046022}
   - component: {fileID: 8141321522867603020}
   m_Layer: 0
   m_Name: Data
@@ -76,32 +75,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52a5c954a0346cb4e96045f701a3473f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 8813759385689046022}
   fade: {fileID: 0}
   levelName: 
   kinect: {fileID: 0}
   cursorHand: {fileID: 0}
   pool: {fileID: 0}
   currentLevel: 
---- !u!114 &8813759385689046022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8813759385689046021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 781c87befccb9c14dafb67921431d11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsData:
-    hand_distances: 0
-    swimmerSpeed: 0
-    walkerSpeed: 0
-    desaceleration: 0
-    triviaTime: 0
-    swimTime: 0
 --- !u!114 &8141321522867603020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,8 +94,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   all:
-  - interactiveItem: {fileID: 7243415607688973221, guid: 37fe3fb1ab8d69743a600c900c87ec9d,
+  - interactiveItem: {fileID: 5231836764887491635, guid: 37fe3fb1ab8d69743a600c900c87ec9d,
       type: 3}
-    qty: 100
+    qty: 40
+  - interactiveItem: {fileID: 4809456959249323417, guid: adac76bc0420e1f4a8241c2fd3eda13b,
+      type: 3}
+    qty: 20
+  - interactiveItem: {fileID: 4188263068144634424, guid: ddf913efa01c18647b8ad50356b73efa,
+      type: 3}
+    qty: 40
   pooled: []
   pooledObjects: {fileID: 608400453340017978}
